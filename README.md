@@ -1,3 +1,7 @@
+# Pokemon MCP Server Demo for NTCU summer camp
+
+pokemon example MCP server is from [@Sachin-crypto/Pokemon-MCP-Server](https://github.com/Sachin-crypto/Pokemon-MCP-Server) github repo
+
 # 🧩 Pokemon MCP Server Demo
 
 This is a simple MCP (Model Context Protocol) server that connects to the [PokéAPI](https://pokeapi.co/) and exposes tools that an LLM can use to fetch Pokémon data, list popular Pokémon, and build a tournament squad.
@@ -52,3 +56,4 @@ uv add mcp[cli] httpx
 # Create our server file
 new-item pokemon.py  # On PowerShell
 ```
+
