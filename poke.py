@@ -1,5 +1,6 @@
 import httpx
-from mcp.server.fastmcp import FastMCP
+from fastmcp import FastMCP
+from fastmcp.prompts.prompt import Message, PromptMessage, TextContent
 
 mcp = FastMCP("poke")
 
@@ -57,7 +58,22 @@ async def list_popular_pokemon() -> str:
         "Charizard", "Garchomp", "Lucario",
         "Dragonite", "Metagross", "Gardevoir"
     ])
+    
+@mcp.prompt
+def introduce_pokemon_prompt(
+    pokemon_name: str,
+    pokedex_number: int
+) -> PromptMessage:
+    """Generates a user message simulating Professor Oak introducing a Pokémon."""
+    content = f"""
+    嗨，[訓練家姓名]！歡迎來到寶可夢的世界！
+    今天，我要為你介紹寶可夢圖鑑中編號為 {pokedex_number} 的寶可夢，牠就是... {pokemon_name}！
+    {pokemon_name} 是一種非常特別的寶可夢，擁有... [在這裡可以加入對該寶可夢的具體描述，例如屬性、習性、技能等]...
+    我希望你和 {pokemon_name} 在未來的旅程中能成為最好的夥伴！
+    """
+    return PromptMessage(role="user", content=TextContent(type="text", text=content))
 
 # --- Entry point ---
 if __name__ == "__main__":
-    mcp.run(transport="stdio")
+    #mcp.run(transport="stdio")
+    mcp.run()
